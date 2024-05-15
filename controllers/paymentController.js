@@ -1,8 +1,8 @@
 import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import { User } from "../models/User.js";
 import ErrorHandler from "../utils/errorHandler.js";
-import { instance } from "../server.js";
 import crypto from "crypto";
+import { Payment } from "../models/Payment.js";
 import Razorpay from "razorpay";
 
 export const buySubscription = catchAsyncError(async (req, res, next) => {
