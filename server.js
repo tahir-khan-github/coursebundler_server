@@ -1,5 +1,5 @@
 import Razorpay from "razorpay";
-import app, { startServer } from "./app.js";
+import app from "./app.js";
 import { connectDB } from "./config/database.js";
 import cloudinary from "cloudinary";
 import nodeCron from "node-cron";
@@ -26,7 +26,10 @@ nodeCron.schedule("0 0 0 1 * *", async () => {
   }
 });
 
-startServer(); //function to start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log("Server is working on port: ", PORT);
+});
 
 
 
