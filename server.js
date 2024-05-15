@@ -13,10 +13,12 @@ cloudinary.v2.config({
   api_secret: process.env.CLOUDINARY_APISECRET,
 });
 
-export const instance = new Razorpay({
+ const instance = new Razorpay({
   key_id: process.env.RAZORPAY_KEY,
   key_secret: process.env.RAZORPAY_SECRET,
 });
+
+export default instance;
 
 nodeCron.schedule("0 0 0 1 * *", async () => {
   try {
@@ -26,10 +28,9 @@ nodeCron.schedule("0 0 0 1 * *", async () => {
   }
 });
 
-const server = app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server is working on port: ", process.env.PORT);
 });
 
 
-export default server;
 
