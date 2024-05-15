@@ -13,6 +13,11 @@ export const buySubscription = catchAsyncError(async (req, res, next) => {
 
   const plan_id = process.env.PLAN_ID || "plan_OAEqGOEdUM4m3Q";
 
+  const instance = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY,
+    key_secret: process.env.RAZORPAY_SECRET,
+  });
+
   const subscription = await instance.subscriptions.create({
     plan_id: plan_id,
     customer_notify: 1,
