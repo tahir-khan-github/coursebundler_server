@@ -3,7 +3,6 @@ import { User } from "../models/User.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import { instance } from "../server.js";
 import crypto from "crypto";
-import { Payment } from "../models/Payment.js";
 
 export const buySubscription = catchAsyncError(async (req, res, next) => {
   const user = await User.findById(req.user._id);
