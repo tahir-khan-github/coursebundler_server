@@ -1,5 +1,5 @@
 import Razorpay from "razorpay";
-import app from "./app.js";
+import app, { startServer } from "./app.js";
 import { connectDB } from "./config/database.js";
 import cloudinary from "cloudinary";
 import nodeCron from "node-cron";
@@ -13,12 +13,10 @@ cloudinary.v2.config({
   api_secret: process.env.CLOUDINARY_APISECRET,
 });
 
- const instance = new Razorpay({
+export const instance = new Razorpay({
   key_id: process.env.RAZORPAY_KEY,
   key_secret: process.env.RAZORPAY_SECRET,
 });
-
-export default instance;
 
 nodeCron.schedule("0 0 0 1 * *", async () => {
   try {
@@ -28,9 +26,7 @@ nodeCron.schedule("0 0 0 1 * *", async () => {
   }
 });
 
-app.listen(process.env.PORT, () => {
-  console.log("Server is working on port: ", process.env.PORT);
-});
+startServer(); //function to start the server
 
 
 

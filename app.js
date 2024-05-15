@@ -37,12 +37,19 @@ app.use("/api/v1", user);
 app.use("/api/v1", payment);
 app.use("/api/v1", others);
 
+app.use(ErrorMiddleware);
+
 export default app;
 
-app.get("/", (req, res) =>
-  res.send(
-    `<h1>Site is working. click <a href=${process.env.FRONTEND_URL}>here</a> to visit frontend.</h1>`
-  )
-);
+export function startServer() {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log("Server is working on port: ", PORT);
+  });
 
-app.use(ErrorMiddleware);
+  app.get("/", (req, res) =>
+    res.send(
+      `<h1>Site is working. click <a href=${process.env.FRONTEND_URL}>here</a> to visit frontend.</h1>`
+    )
+  );
+}
