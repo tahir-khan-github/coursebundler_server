@@ -3,6 +3,7 @@ import { User } from "../models/User.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import { instance } from "../server.js";
 import crypto from "crypto";
+import Razorpay from "razorpay";
 
 export const buySubscription = catchAsyncError(async (req, res, next) => {
   const user = await User.findById(req.user._id);
