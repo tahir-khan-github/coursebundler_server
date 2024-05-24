@@ -68,10 +68,10 @@ export const logout = catchAsyncError(async (req, res, next) => {
     secure: true // Make sure this is true only in production
   };
 
-  res.status(200).cookie("token","", options).json({
+  res.status(200).clearCookie('token', options).json({
     success: true,
     message: "Logged out successfully",
-  });
+});
 });
 
 export const getMyProfile = catchAsyncError(async (req, res, next) => {
