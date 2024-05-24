@@ -60,14 +60,14 @@ export const login = catchAsyncError(async (req, res, next) => {
 });
 
 export const logout = catchAsyncError(async (req, res, next) => {
-  const options = {
+  
+
+  res.status(200).cookie("token", null, {
     expires: new Date(Date.now()),
     httpOnly: true, // This ensures the cookie is only accessible by the web server
     sameSite: "None", // Ensure this matches your front-end and back-end setup, especially if using cross-site requests
     secure: true, // Make sure this is true only in production
-  };
-
-  res.status(200).cookie("token", null, options).json({
+  }).json({
     success: true,
     message: "logout successfully",
   });
