@@ -63,11 +63,9 @@ export const login = catchAsyncError(async (req, res, next) => {
 export const logout = catchAsyncError(async (req, res, next) => {
   const options = {
     expires: new Date(Date.now()), // Immediate expiration
-    httpOnly: true, // Only accessible by the web server
+    httpOnly: true, // This ensures the cookie is only accessible by the web server
     sameSite: 'None', // Ensure this matches your front-end and back-end setup, especially if using cross-site requests
-    secure: true, // Ensure this matches the environment (use in production)
-    path: '/', // Ensure path is consistent
-    domain:  undefined, // Ensure domain matches if specified
+    secure: true // Make sure this is true only in production
   };
 
   res.status(200).cookie("token", "", options).json({
