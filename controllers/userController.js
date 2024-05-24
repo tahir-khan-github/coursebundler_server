@@ -67,6 +67,7 @@ export const logout = catchAsyncError(async (req, res, next) => {
     httpOnly: true, // This ensures the cookie is only accessible by the web server
     sameSite: "None", // Ensure this matches your front-end and back-end setup, especially if using cross-site requests
     secure: true, // Make sure this is true only in production
+    path: '/',
   }).json({
     success: true,
     message: "logout successfully",
