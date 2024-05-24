@@ -68,7 +68,7 @@ export const logout = catchAsyncError(async (req, res, next) => {
     secure: true // Make sure this is true only in production
   };
 
-  res.status(200).cookie("token",null, options).json({
+  res.status(200).cookie("token","", options).json({
     success: true,
     message: "Logged out successfully",
   });
